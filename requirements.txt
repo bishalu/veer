@@ -1,0 +1,13 @@
+streamlit
+streamlit-mic-recorder
+openai
+azure-ai-inference
+azure-core
+google-generativeai
+numpy
+boto3
+SpeechRecognition
+pyaudio
+numpy
+pydub
+streamlit-audiorecorder
