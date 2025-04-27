@@ -10,3 +10,4 @@ SpeechRecognition
 numpy
 pydub
 streamlit-audiorecorder
+python-dotenv
