@@ -7,7 +7,6 @@ google-generativeai
 numpy
 boto3
 SpeechRecognition
-pyaudio
 numpy
 pydub
 streamlit-audiorecorder

@@ -3,7 +3,6 @@ import time
 import json
 import tempfile
 import os
-import numpy as np
 from gai_utils import gai_client
 from veer_client_utils import analyze_profile
 
@@ -20,8 +19,6 @@ if 'recording_status' not in st.session_state:
     st.session_state.recording_status = False
 if 'recording_feedback' not in st.session_state:
     st.session_state.recording_feedback = ""
-if 'audio_visualization' not in st.session_state:
-    st.session_state.audio_visualization = []
 if 'user_name' not in st.session_state:
     st.session_state.user_name = ""
 
@@ -78,42 +75,11 @@ st.markdown("""
             opacity: 1;
         }
     }
-    .audio-meter {
-        width: 100%;
-        height: 30px;
-        background-color: #eee;
-        border-radius: 15px;
-        overflow: hidden;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-    .audio-level {
-        height: 100%;
-        width: 0%;
-        background-color: #4CAF50;
-        transition: width 0.1s ease-in-out;
-    }
     .recording-status {
         color: #FF5A5F;
         font-weight: bold;
         margin-top: 10px;
         margin-bottom: 10px;
-    }
-    .audio-visualizer {
-        display: flex;
-        align-items: flex-end;
-        height: 100px;
-        background-color: #f0f0f0;
-        border-radius: 10px;
-        overflow: hidden;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-    .audio-bar {
-        width: 5px;
-        background-color: #FF5A5F;
-        margin: 0 1px;
-        transition: height 0.1s ease-in-out;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -250,7 +216,7 @@ elif st.session_state.step == 2:
     """)
     st.markdown('</div>', unsafe_allow_html=True)
     
-    # Import the audiorecorder component
+    # Method 1: Try using streamlit-audiorecorder
     try:
         from audiorecorder import audiorecorder
         
@@ -293,38 +259,63 @@ elif st.session_state.step == 2:
             # Show animated recording indicator if we're recording
             if st.session_state.recording_status:
                 st.markdown('<div class="recording-indicator"></div> Recording...', unsafe_allow_html=True)
-                
-        # Option to continue or re-record (only show if we have a recording)
-        if len(st.session_state.recordings) > 0:
-            col1, col2 = st.columns(2)
-            with col1:
-                if st.button("Re-record", key="rerecord_button"):
-                    # Remove the temporary file
-                    try:
-                        os.unlink(st.session_state.recordings[-1])
-                    except:
-                        pass
-                    st.session_state.recordings.pop()
-                    st.session_state.recording_feedback = "Ready to record again."
-                    st.rerun()
-            with col2:
-                if st.button("Continue", type="primary", key="continue_button"):
-                    if not st.session_state.user_name:
-                        st.error("Please enter your name before continuing.")
-                    else:
-                        st.session_state.step = 3
-                        st.rerun()
-                    
+    
+    # Method 2: Fallback to native st.audio_input (Streamlit 1.27.0+)
     except ImportError:
-        # Fallback if audiorecorder is not installed
-        st.error("""
-        The audiorecorder component is not installed. 
+        try:
+            st.info("Using Streamlit's native audio recording. Please click the microphone to record.")
+            
+            # Use Streamlit's native audio recorder
+            audio_bytes = st.audio_input("Click to record your introduction", key="native_recorder")
+            
+            if audio_bytes:
+                # Save the recording to a temporary file
+                with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as temp_audio:
+                    temp_audio.write(audio_bytes)
+                    st.session_state.recordings.append(temp_audio.name)
+                
+                # Display the audio player
+                st.audio(audio_bytes, format="audio/wav")
+                st.session_state.recording_feedback = "Recording saved!"
         
-        Please install it with:
-        ```
-        pip install streamlit-audiorecorder
-        ```
-        """)
+        # Method 3: Allow file upload as last resort
+        except (ImportError, AttributeError):
+            st.warning("Audio recording components not available. Please upload an audio file instead.")
+            
+            uploaded_file = st.file_uploader("Upload an audio recording (WAV, MP3, etc.)", 
+                                            type=["wav", "mp3", "m4a", "ogg"],
+                                            key="file_uploader")
+            
+            if uploaded_file is not None:
+                # Save the uploaded file to a temporary file
+                with tempfile.NamedTemporaryFile(suffix="." + uploaded_file.name.split(".")[-1], delete=False) as temp_audio:
+                    temp_audio.write(uploaded_file.getvalue())
+                    st.session_state.recordings.append(temp_audio.name)
+                
+                # Display the audio player
+                st.audio(uploaded_file.getvalue())
+                st.session_state.recording_feedback = "Audio file saved!"
+    
+    # Option to continue or re-record (only show if we have a recording)
+    if len(st.session_state.recordings) > 0:
+        col1, col2 = st.columns(2)
+        with col1:
+            if st.button("Re-record", key="rerecord_button"):
+                # Remove the temporary file
+                try:
+                    os.unlink(st.session_state.recordings[-1])
+                except:
+                    pass
+                st.session_state.recordings.pop()
+                st.session_state.recording_feedback = "Ready to record again."
+                st.rerun()
+        with col2:
+            if st.button("Continue", type="primary", key="continue_button"):
+                if not st.session_state.user_name:
+                    st.error("Please enter your name before continuing.")
+                else:
+                    st.session_state.step = 3
+                    st.rerun()
 
 elif st.session_state.step == 3:
     # Step 3: Speech to Text Conversion
