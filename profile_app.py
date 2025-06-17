@@ -583,7 +583,7 @@ elif st.session_state.step == 6:
 
 # Add a sidebar with additional information
 with st.sidebar:
-    st.image("https://via.placeholder.com/150x150.png?text=Veer", width=150)
+    st.image("logo.png", width=150)
     st.markdown("### About Veer")
     st.markdown("""
     Veer is a goal manifestation and intelligent matchmaking platform designed specifically for Nepali communities both in Nepal and the Nepali diaspora in America.
