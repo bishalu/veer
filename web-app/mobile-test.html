@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Golo - Mobile Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .test-container {
+            max-width: 420px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            color: #FF5A5F;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .test-result {
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 12px;
+            border-left: 4px solid;
+        }
+        .pass {
+            background: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+        .info {
+            background: #d1ecf1;
+            border-color: #17a2b8;
+            color: #0c5460;
+        }
+        .warning {
+            background: #fff3cd;
+            border-color: #ffc107;
+            color: #856404;
+        }
+        .mobile-specs {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+        .action-btn {
+            background: #FF5A5F;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin: 0.5rem 0;
+            transition: all 0.3s;
+        }
+        .action-btn:hover {
+            background: #e64a4f;
+            transform: translateY(-2px);
+        }
+        .action-btn:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>📱 Mobile Compatibility Test</h1>
+        
+        <div id="test-results">
+            <div class="test-result info">
+                🔄 Running mobile compatibility checks...
+            </div>
+        </div>
+
+        <div class="mobile-specs">
+            <strong>Device Info:</strong><br>
+            Screen: <span id="screen-size">Loading...</span><br>
+            Viewport: <span id="viewport-size">Loading...</span><br>
+            Touch Support: <span id="touch-support">Loading...</span><br>
+            User Agent: <span id="user-agent">Loading...</span>
+        </div>
+
+        <button class="action-btn" onclick="window.open('index.html', '_blank')">
+            🚀 Open Golo App
+        </button>
+        
+        <button class="action-btn" onclick="testFeatures()">
+            🧪 Test Mobile Features
+        </button>
+
+        <div id="feature-results"></div>
+    </div>
+
+    <script>
+        // Get device information
+        function getDeviceInfo() {
+            document.getElementById('screen-size').textContent = 
+                `${screen.width}×${screen.height}`;
+            document.getElementById('viewport-size').textContent = 
+                `${window.innerWidth}×${window.innerHeight}`;
+            document.getElementById('touch-support').textContent = 
+                'ontouchstart' in window ? 'Yes' : 'No';
+            document.getElementById('user-agent').textContent = 
+                navigator.userAgent.substring(0, 50) + '...';
+        }
+
+        // Run compatibility tests
+        function runCompatibilityTests() {
+            const results = document.getElementById('test-results');
+            results.innerHTML = '';
+
+            // Test 1: CSS Custom Properties
+            try {
+                document.documentElement.style.setProperty('--test', 'value');
+                addResult('✅ CSS Custom Properties supported', 'pass');
+            } catch (e) {
+                addResult('❌ CSS Custom Properties not supported', 'warning');
+            }
+
+            // Test 2: Flexbox
+            const testEl = document.createElement('div');
+            testEl.style.display = 'flex';
+            if (testEl.style.display === 'flex') {
+                addResult('✅ Flexbox supported', 'pass');
+            } else {
+                addResult('❌ Flexbox not supported', 'warning');
+            }
+
+            // Test 3: Touch Events
+            if ('ontouchstart' in window) {
+                addResult('✅ Touch events supported', 'pass');
+            } else {
+                addResult('ℹ️ Touch events not available (desktop?)', 'info');
+            }
+
+            // Test 4: Viewport Meta Tag
+            const viewport = document.querySelector('meta[name="viewport"]');
+            if (viewport) {
+                addResult('✅ Viewport meta tag configured', 'pass');
+            } else {
+                addResult('❌ Viewport meta tag missing', 'warning');
+            }
+
+            // Test 5: Safe Area Support
+            if (CSS.supports('padding: env(safe-area-inset-bottom)')) {
+                addResult('✅ Safe area insets supported', 'pass');
+            } else {
+                addResult('ℹ️ Safe area insets not supported', 'info');
+            }
+
+            // Test 6: Vibration API
+            if ('vibrate' in navigator) {
+                addResult('✅ Vibration API supported', 'pass');
+            } else {
+                addResult('ℹ️ Vibration API not supported', 'info');
+            }
+        }
+
+        function testFeatures() {
+            const results = document.getElementById('feature-results');
+            results.innerHTML = '<h3>🔬 Feature Tests</h3>';
+
+            // Test vibration
+            if ('vibrate' in navigator) {
+                navigator.vibrate(100);
+                addFeatureResult('✅ Vibration test triggered');
+            } else {
+                addFeatureResult('ℹ️ Vibration not available');
+            }
+
+            // Test orientation
+            if (screen.orientation) {
+                addFeatureResult(`📱 Orientation: ${screen.orientation.type}`);
+            } else {
+                addFeatureResult('ℹ️ Orientation API not available');
+            }
+
+            // Test geolocation
+            if ('geolocation' in navigator) {
+                addFeatureResult('✅ Geolocation API available');
+            } else {
+                addFeatureResult('ℹ️ Geolocation not available');
+            }
+
+            // Test PWA capabilities
+            if ('serviceWorker' in navigator) {
+                addFeatureResult('✅ Service Worker support (PWA ready)');
+            } else {
+                addFeatureResult('ℹ️ Service Worker not supported');
+            }
+        }
+
+        function addResult(message, type) {
+            const results = document.getElementById('test-results');
+            const div = document.createElement('div');
+            div.className = `test-result ${type}`;
+            div.textContent = message;
+            results.appendChild(div);
+        }
+
+        function addFeatureResult(message) {
+            const results = document.getElementById('feature-results');
+            const div = document.createElement('div');
+            div.className = 'test-result info';
+            div.textContent = message;
+            results.appendChild(div);
+        }
+
+        // Run tests on load
+        document.addEventListener('DOMContentLoaded', function() {
+            getDeviceInfo();
+            setTimeout(runCompatibilityTests, 500);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golo - Goal Manifestation & Matchmaking</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/chat.css">
+    <link rel="stylesheet" href="css/goals.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-container">
+                <img src="assets/logo.png" alt="Golo Logo" class="logo">
+                <h1 class="app-title">Golo</h1>
+            </div>
+            <div class="user-info">
+                <span class="user-name">Welcome</span>
+                <button class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Desktop Navigation (Top) -->
+        <nav class="top-nav desktop-only">
+            <button class="nav-tab active" data-tab="goals">
+                <i class="fas fa-bullseye"></i>
+                <span>Goals</span>
+            </button>
+            <button class="nav-tab" data-tab="chat">
+                <i class="fas fa-comments"></i>
+                <span>Messages</span>
+            </button>
+            <button class="nav-tab" data-tab="profile">
+                <i class="fas fa-user-cog"></i>
+                <span>Profile Settings</span>
+            </button>
+        </nav>
+
+        <!-- Tab Content -->
+        <main class="main-content">
+            <!-- Goals Tab -->
+            <div class="tab-content active" id="goals-tab">
+                <div class="goals-container">
+                    <div class="goals-header">
+                        <h2>Goal Setting & Tracking</h2>
+                        <p>Define, track, and achieve your goals with community support</p>
+                        <button class="btn btn-primary add-goal-btn">
+                            <i class="fas fa-plus"></i>
+                            Add New Goal
+                        </button>
+                    </div>
+
+                    <div class="goals-grid">
+                        <!-- Sample goals -->
+                        <div class="goal-card">
+                            <div class="goal-header">
+                                <h3>Launch Tech Startup</h3>
+                                <div class="goal-status in-progress">In Progress</div>
+                            </div>
+                            <div class="goal-description">
+                                <p>Build and launch a SaaS platform for small businesses</p>
+                            </div>
+                            <div class="goal-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 65%"></div>
+                                </div>
+                                <span class="progress-text">65% Complete</span>
+                            </div>
+                            <div class="goal-metrics">
+                                <div class="metric">
+                                    <span class="metric-label">Target Date:</span>
+                                    <span class="metric-value">Dec 2024</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">Connections:</span>
+                                    <span class="metric-value">3 mentors</span>
+                                </div>
+                            </div>
+                            <div class="goal-actions">
+                                <button class="btn btn-outline btn-sm">View Details</button>
+                                <button class="btn btn-primary btn-sm">Update Progress</button>
+                            </div>
+                        </div>
+
+                        <div class="goal-card">
+                            <div class="goal-header">
+                                <h3>Learn Digital Marketing</h3>
+                                <div class="goal-status active">Active</div>
+                            </div>
+                            <div class="goal-description">
+                                <p>Master digital marketing skills for business growth</p>
+                            </div>
+                            <div class="goal-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 30%"></div>
+                                </div>
+                                <span class="progress-text">30% Complete</span>
+                            </div>
+                            <div class="goal-metrics">
+                                <div class="metric">
+                                    <span class="metric-label">Target Date:</span>
+                                    <span class="metric-value">Mar 2024</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">Connections:</span>
+                                    <span class="metric-value">2 peers</span>
+                                </div>
+                            </div>
+                            <div class="goal-actions">
+                                <button class="btn btn-outline btn-sm">View Details</button>
+                                <button class="btn btn-primary btn-sm">Update Progress</button>
+                            </div>
+                        </div>
+
+                        <div class="goal-card">
+                            <div class="goal-header">
+                                <h3>Build Professional Network</h3>
+                                <div class="goal-status planning">Planning</div>
+                            </div>
+                            <div class="goal-description">
+                                <p>Expand professional network in the tech industry</p>
+                            </div>
+                            <div class="goal-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 10%"></div>
+                                </div>
+                                <span class="progress-text">10% Complete</span>
+                            </div>
+                            <div class="goal-metrics">
+                                <div class="metric">
+                                    <span class="metric-label">Target Date:</span>
+                                    <span class="metric-value">Ongoing</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">Connections:</span>
+                                    <span class="metric-value">1 mentor</span>
+                                </div>
+                            </div>
+                            <div class="goal-actions">
+                                <button class="btn btn-outline btn-sm">View Details</button>
+                                <button class="btn btn-primary btn-sm">Update Progress</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="goals-insights">
+                        <h3>Your Progress Insights</h3>
+                        <div class="insights-grid">
+                            <div class="insight-card">
+                                <div class="insight-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="insight-content">
+                                    <h4>Overall Progress</h4>
+                                    <p class="insight-value">35%</p>
+                                    <p class="insight-description">Average across all goals</p>
+                                </div>
+                            </div>
+
+                            <div class="insight-card">
+                                <div class="insight-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="insight-content">
+                                    <h4>Active Connections</h4>
+                                    <p class="insight-value">6</p>
+                                    <p class="insight-description">People supporting your goals</p>
+                                </div>
+                            </div>
+
+                            <div class="insight-card">
+                                <div class="insight-icon">
+                                    <i class="fas fa-fire"></i>
+                                </div>
+                                <div class="insight-content">
+                                    <h4>Goal Streak</h4>
+                                    <p class="insight-value">12 days</p>
+                                    <p class="insight-description">Consecutive days with progress</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Tab -->
+            <div class="tab-content" id="chat-tab">
+                <div class="chat-container">
+                    <div class="chat-sidebar">
+                        <div class="chat-header">
+                            <h3>Messages</h3>
+                            <button class="new-chat-btn">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="search-bar">
+                            <input type="text" placeholder="Search conversations..." class="search-input">
+                            <i class="fas fa-search search-icon"></i>
+                        </div>
+
+                        <div class="contacts-list">
+                            <!-- Sample contacts - will be populated dynamically -->
+                            <div class="contact-item active">
+                                <div class="contact-avatar">
+                                    <img src="https://via.placeholder.com/40" alt="Contact">
+                                </div>
+                                <div class="contact-info">
+                                    <div class="contact-name">Sarah Chen</div>
+                                    <div class="last-message">Thanks for the advice!</div>
+                                    <div class="message-time">2m ago</div>
+                                </div>
+                                <div class="unread-badge">2</div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-avatar">
+                                    <img src="https://via.placeholder.com/40" alt="Contact">
+                                </div>
+                                <div class="contact-info">
+                                    <div class="contact-name">Ram Sharma</div>
+                                    <div class="last-message">Let's connect next week</div>
+                                    <div class="message-time">1h ago</div>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-avatar">
+                                    <img src="https://via.placeholder.com/40" alt="Contact">
+                                </div>
+                                <div class="contact-info">
+                                    <div class="contact-name">Maya Patel</div>
+                                    <div class="last-message">Great meeting you!</div>
+                                    <div class="message-time">3h ago</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chat-main">
+                        <div class="chat-messages-header">
+                            <div class="current-chat-info">
+                                <div class="chat-avatar">
+                                    <img src="https://via.placeholder.com/40" alt="Contact">
+                                </div>
+                                <div class="chat-details">
+                                    <div class="chat-name">Sarah Chen</div>
+                                    <div class="chat-status">Online</div>
+                                </div>
+                            </div>
+                            <div class="chat-actions">
+                                <button class="chat-action-btn">
+                                    <i class="fas fa-phone"></i>
+                                </button>
+                                <button class="chat-action-btn">
+                                    <i class="fas fa-video"></i>
+                                </button>
+                                <button class="chat-action-btn">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="chat-messages">
+                            <!-- Sample messages -->
+                            <div class="message received">
+                                <div class="message-content">
+                                    <p>Hi! I saw your profile and we have similar goals. Would love to connect!</p>
+                                </div>
+                                <div class="message-time">10:30 AM</div>
+                            </div>
+
+                            <div class="message sent">
+                                <div class="message-content">
+                                    <p>That's great! I'd love to learn more about your journey. What specific goals are you working on?</p>
+                                </div>
+                                <div class="message-time">10:32 AM</div>
+                            </div>
+
+                            <div class="message received">
+                                <div class="message-content">
+                                    <p>I'm focusing on building my tech startup. Looking for mentors and potential co-founders!</p>
+                                </div>
+                                <div class="message-time">10:35 AM</div>
+                            </div>
+                        </div>
+
+                        <div class="chat-input-section">
+                            <div class="chat-input-container">
+                                <button class="attachment-btn">
+                                    <i class="fas fa-paperclip"></i>
+                                </button>
+                                <input type="text" class="chat-input" placeholder="Type a message...">
+                                <button class="send-btn">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Settings Tab -->
+            <div class="tab-content" id="profile-tab">
+                <div class="profile-container">
+                    <div class="profile-header">
+                        <h2>Create Your Profile</h2>
+                        <p>Tell us about yourself and your goals so we can connect you with the right people</p>
+                    </div>
+
+                    <!-- Profile Creation Steps -->
+                    <div class="profile-steps">
+                        <div class="step-indicator">
+                            <div class="step active" data-step="1">
+                                <span class="step-number">1</span>
+                                <span class="step-label">Introduction</span>
+                            </div>
+                            <div class="step" data-step="2">
+                                <span class="step-number">2</span>
+                                <span class="step-label">Voice Recording</span>
+                            </div>
+                            <div class="step" data-step="3">
+                                <span class="step-number">3</span>
+                                <span class="step-label">Review Transcript</span>
+                            </div>
+                            <div class="step" data-step="4">
+                                <span class="step-number">4</span>
+                                <span class="step-label">Profile Generated</span>
+                            </div>
+                        </div>
+
+                        <!-- Step 1: Introduction -->
+                        <div class="step-content active" id="step-1">
+                            <div class="welcome-card">
+                                <h3>Welcome to Golo! 🙏</h3>
+                                <p>Golo helps you articulate your goals and connect with like-minded individuals who can support your journey.</p>
+                                
+                                <div class="process-overview">
+                                    <h4>In this profile creation process, you'll:</h4>
+                                    <ul>
+                                        <li>Enter your name and record your voice sharing about yourself</li>
+                                        <li>Review the transcription of your recording</li>
+                                        <li>See an AI-generated profile based on your responses</li>
+                                    </ul>
+                                </div>
+                                
+                                <p class="tagline">Let's begin this journey of courage and determination together.</p>
+                                
+                                <button class="btn btn-primary" onclick="nextStep()">Start Profile Creation</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Voice Recording -->
+                        <div class="step-content" id="step-2">
+                            <div class="recording-card">
+                                <h3>Tell Us About Yourself 🎙️</h3>
+                                
+                                <div class="name-input-section">
+                                    <label for="user-name">Your Name:</label>
+                                    <input type="text" id="user-name" placeholder="Enter your full name" required>
+                                </div>
+
+                                <div class="recording-prompts">
+                                    <h4>Please respond to the following prompts using your voice. Speak naturally for 1-2 minutes about:</h4>
+                                    <ul>
+                                        <li>Your background and current location</li>
+                                        <li>Your current goals and aspirations</li>
+                                        <li>What motivates you to achieve these goals</li>
+                                        <li>Challenges you're facing</li>
+                                        <li>How you think connecting with others might help you</li>
+                                    </ul>
+                                </div>
+
+                                <div class="recording-section">
+                                    <div class="recording-controls">
+                                        <button class="record-btn" id="record-btn" onclick="toggleRecording()">
+                                            <i class="fas fa-microphone"></i>
+                                            <span>Start Recording</span>
+                                        </button>
+                                        <div class="recording-indicator" id="recording-indicator">
+                                            <div class="pulse-dot"></div>
+                                            <span>Recording...</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="audio-player-section" id="audio-player-section" style="display: none;">
+                                        <audio controls id="audio-player"></audio>
+                                        <div class="recording-info">
+                                            <span class="duration" id="recording-duration">Duration: 0:00</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="step-actions">
+                                    <button class="btn btn-secondary" onclick="previousStep()">Go Back</button>
+                                    <button class="btn btn-primary" id="continue-recording" onclick="nextStep()" disabled>Continue</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Review Transcript -->
+                        <div class="step-content" id="step-3">
+                            <div class="transcript-card">
+                                <h3>Review Your Transcript ✍️</h3>
+                                <p>Below is the transcription of your recording. You can edit it if needed.</p>
+                                
+                                <div class="transcript-section">
+                                    <label for="transcript-text">Edit your transcript if needed:</label>
+                                    <textarea id="transcript-text" placeholder="Your transcript will appear here..." rows="10"></textarea>
+                                </div>
+
+                                <div class="step-actions">
+                                    <button class="btn btn-secondary" onclick="previousStep()">Go Back</button>
+                                    <button class="btn btn-primary" onclick="generateProfile()">Generate Profile</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Profile Generated -->
+                        <div class="step-content" id="step-4">
+                            <div class="profile-result-card">
+                                <h3>Your Golo Profile 📊</h3>
+                                <p>Here's your profile based on your responses. This will help us find the best matches for you.</p>
+                                
+                                <div class="profile-display" id="profile-display">
+                                    <!-- Generated profile will be inserted here -->
+                                </div>
+
+                                <div class="next-steps">
+                                    <h4>Next Steps</h4>
+                                    <p>Your profile has been created! Here's what happens next:</p>
+                                    <ul>
+                                        <li>Our matching algorithm will find potential connections based on your profile</li>
+                                        <li>You'll receive notifications when we find good matches for your goals</li>
+                                        <li>You can edit your profile anytime through these settings</li>
+                                    </ul>
+                                    <p><strong>Thank you for joining Golo! 🙏</strong></p>
+                                </div>
+
+                                <div class="step-actions">
+                                    <button class="btn btn-secondary" onclick="editTranscript()">Edit Transcript</button>
+                                    <button class="btn btn-outline" onclick="startOver()">Start Over</button>
+                                    <button class="btn btn-primary" onclick="goToDashboard()">Continue to Dashboard</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Bottom Navigation (Mobile Only) -->
+        <nav class="bottom-nav mobile-only">
+            <button class="nav-item active" data-tab="goals">
+                <i class="fas fa-bullseye"></i>
+                <span>Goals</span>
+            </button>
+            <button class="nav-item" data-tab="chat">
+                <i class="fas fa-comments"></i>
+                <span>Messages</span>
+            </button>
+            <button class="nav-item" data-tab="profile">
+                <i class="fas fa-user-cog"></i>
+                <span>Profile</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/goals.js"></script>
+</body>
+</html>

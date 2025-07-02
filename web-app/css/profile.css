@@ -1,0 +1,404 @@
+/* Profile Settings Tab Styles */
+
+.profile-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.profile-header h2 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.profile-header p {
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+}
+
+/* Step Indicator */
+.step-indicator {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.step-indicator::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 25%;
+    right: 25%;
+    height: 2px;
+    background-color: var(--border-color);
+    z-index: 1;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    background: var(--background-color);
+    padding: 0 1rem;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--border-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s;
+}
+
+.step.active .step-number,
+.step.completed .step-number {
+    background-color: var(--primary-color);
+}
+
+.step-label {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    text-align: center;
+}
+
+.step.active .step-label {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+/* Step Content */
+.step-content {
+    display: none;
+}
+
+.step-content.active {
+    display: block;
+}
+
+/* Welcome Card */
+.welcome-card {
+    background: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    text-align: center;
+}
+
+.welcome-card h3 {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.process-overview {
+    margin: 2rem 0;
+    text-align: left;
+    background: var(--accent-color);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+}
+
+.process-overview h4 {
+    margin-bottom: 1rem;
+    color: var(--secondary-color);
+}
+
+.process-overview ul {
+    list-style-position: inside;
+    color: var(--text-color);
+}
+
+.process-overview li {
+    margin-bottom: 0.5rem;
+}
+
+.tagline {
+    font-style: italic;
+    color: var(--secondary-color);
+    margin: 1.5rem 0;
+}
+
+/* Recording Card */
+.recording-card {
+    background: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.recording-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.name-input-section {
+    margin-bottom: 2rem;
+}
+
+.name-input-section label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.recording-prompts {
+    background: var(--accent-color);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 2rem;
+}
+
+.recording-prompts h4 {
+    margin-bottom: 1rem;
+    color: var(--secondary-color);
+}
+
+.recording-prompts ul {
+    list-style-position: inside;
+}
+
+.recording-prompts li {
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+/* Recording Section */
+.recording-section {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.recording-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.record-btn {
+    background: linear-gradient(135deg, var(--primary-color), #e64a4f);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(255, 90, 95, 0.3);
+}
+
+.record-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 90, 95, 0.4);
+}
+
+.record-btn.recording {
+    background: var(--error-color);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.recording-indicator {
+    display: none;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--error-color);
+    font-weight: 500;
+}
+
+.recording-indicator.active {
+    display: flex;
+}
+
+.pulse-dot {
+    width: 12px;
+    height: 12px;
+    background-color: var(--error-color);
+    border-radius: 50%;
+    animation: pulse-dot 1s infinite;
+}
+
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+.audio-player-section {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: var(--background-color);
+    border-radius: var(--border-radius);
+}
+
+.audio-player-section audio {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.recording-info {
+    text-align: center;
+    color: var(--secondary-color);
+}
+
+/* Transcript Card */
+.transcript-card {
+    background: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.transcript-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.transcript-section {
+    margin: 2rem 0;
+}
+
+.transcript-section textarea {
+    min-height: 200px;
+    resize: vertical;
+    font-family: inherit;
+}
+
+/* Profile Result Card */
+.profile-result-card {
+    background: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.profile-result-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.profile-display {
+    background: var(--background-color);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    margin: 2rem 0;
+}
+
+.profile-section {
+    margin-bottom: 2rem;
+}
+
+.profile-section h4 {
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+}
+
+.profile-item {
+    margin-bottom: 0.5rem;
+}
+
+.profile-item strong {
+    color: var(--secondary-color);
+}
+
+.next-steps {
+    background: var(--accent-color);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    margin: 2rem 0;
+}
+
+.next-steps h4 {
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+.next-steps ul {
+    list-style-position: inside;
+    margin-bottom: 1rem;
+}
+
+.next-steps li {
+    margin-bottom: 0.5rem;
+}
+
+/* Step Actions */
+.step-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    gap: 1rem;
+}
+
+.step-actions .btn {
+    flex: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profile-container {
+        max-width: 100%;
+    }
+    
+    .step-indicator {
+        margin-bottom: 2rem;
+    }
+    
+    .step {
+        padding: 0 0.5rem;
+    }
+    
+    .step-label {
+        font-size: 0.8rem;
+    }
+    
+    .step-actions {
+        flex-direction: column;
+    }
+    
+    .recording-card,
+    .transcript-card,
+    .profile-result-card,
+    .welcome-card {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .step-indicator::before {
+        left: 20%;
+        right: 20%;
+    }
+    
+    .step-number {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .step-label {
+        display: none;
+    }
+}

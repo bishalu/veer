@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desktop vs Mobile Layout Comparison</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 2rem;
+            background: #f5f5f5;
+        }
+        .comparison-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #FF5A5F;
+            margin-bottom: 2rem;
+        }
+        .layout-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        .layout-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        .layout-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        .feature-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+        .icon {
+            width: 20px;
+            text-align: center;
+        }
+        .desktop-feature {
+            color: #2196F3;
+        }
+        .mobile-feature {
+            color: #FF5A5F;
+        }
+        .screenshot-placeholder {
+            background: #f8f9fa;
+            border: 2px dashed #dee2e6;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            margin: 1rem 0;
+            color: #6c757d;
+        }
+        .test-buttons {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .test-btn {
+            background: #FF5A5F;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 0 1rem;
+            transition: all 0.3s;
+        }
+        .test-btn:hover {
+            background: #e64a4f;
+            transform: translateY(-2px);
+        }
+        .responsive-demo {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        .responsive-demo h3 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        .demo-instruction {
+            background: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="comparison-container">
+        <h1>🖥️ vs 📱 Golo Layout Comparison</h1>
+        
+        <div class="layout-grid">
+            <!-- Desktop Layout -->
+            <div class="layout-section">
+                <div class="layout-title desktop-feature">
+                    🖥️ Desktop Web App (768px+)
+                </div>
+                
+                <ul class="feature-list">
+                    <li>
+                        <span class="icon">🎯</span>
+                        <strong>Top Navigation Bar</strong> - Traditional web app tabs
+                    </li>
+                    <li>
+                        <span class="icon">📐</span>
+                        <strong>Full Width Layout</strong> - Utilizes entire screen width
+                    </li>
+                    <li>
+                        <span class="icon">🔲</span>
+                        <strong>White Header</strong> - Clean, professional appearance
+                    </li>
+                    <li>
+                        <span class="icon">📊</span>
+                        <strong>Multi-column Grids</strong> - Efficient space usage
+                    </li>
+                    <li>
+                        <span class="icon">💬</span>
+                        <strong>Wide Chat Layout</strong> - Sidebar + main area (350px + flex)
+                    </li>
+                    <li>
+                        <span class="icon">🎨</span>
+                        <strong>Generous Padding</strong> - 2rem spacing for readability
+                    </li>
+                    <li>
+                        <span class="icon">🖱️</span>
+                        <strong>Mouse Optimized</strong> - Hover effects, precise clicking
+                    </li>
+                </ul>
+                
+                <div class="screenshot-placeholder">
+                    Desktop Screenshot Preview
+                    <br><small>Full-width professional web app</small>
+                </div>
+            </div>
+
+            <!-- Mobile Layout -->
+            <div class="layout-section">
+                <div class="layout-title mobile-feature">
+                    📱 Mobile App Style (767px-)
+                </div>
+                
+                <ul class="feature-list">
+                    <li>
+                        <span class="icon">🔥</span>
+                        <strong>Floating Bottom Nav</strong> - iOS/Android style navigation
+                    </li>
+                    <li>
+                        <span class="icon">📦</span>
+                        <strong>Contained Layout</strong> - 420px max width, centered
+                    </li>
+                    <li>
+                        <span class="icon">🌈</span>
+                        <strong>Gradient Header</strong> - App-like visual appeal
+                    </li>
+                    <li>
+                        <span class="icon">📚</span>
+                        <strong>Single Column Stack</strong> - Mobile-optimized layout
+                    </li>
+                    <li>
+                        <span class="icon">💬</span>
+                        <strong>Stacked Chat</strong> - Full-width mobile messaging
+                    </li>
+                    <li>
+                        <span class="icon">📲</span>
+                        <strong>Touch Optimized</strong> - 44px+ touch targets
+                    </li>
+                    <li>
+                        <span class="icon">📳</span>
+                        <strong>Haptic Feedback</strong> - Vibration on interactions
+                    </li>
+                    <li>
+                        <span class="icon">🔄</span>
+                        <strong>App-like Animations</strong> - Scale effects, blur backgrounds
+                    </li>
+                </ul>
+                
+                <div class="screenshot-placeholder">
+                    Mobile Screenshot Preview
+                    <br><small>Centered app-like container</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="responsive-demo">
+            <h3>🧪 Interactive Testing</h3>
+            
+            <div class="demo-instruction">
+                <strong>To see the differences:</strong>
+                <ol>
+                    <li>Open the main app in a new tab/window</li>
+                    <li>Resize your browser window to see layout changes</li>
+                    <li>Try on actual mobile device for full experience</li>
+                </ol>
+            </div>
+
+            <div class="test-buttons">
+                <button class="test-btn" onclick="openMainApp()">
+                    🚀 Open Main App (Auto-detect)
+                </button>
+                <button class="test-btn" onclick="openMobileMode()">
+                    📱 Open Mobile Mode
+                </button>
+                <button class="test-btn" onclick="openDesktopMode()">
+                    🖥️ Open Desktop Mode
+                </button>
+                <button class="test-btn" onclick="openMobileTest()">
+                    🧪 Mobile Test Page
+                </button>
+            </div>
+        </div>
+
+        <div class="responsive-demo">
+            <h3>📋 Technical Implementation</h3>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                <div>
+                    <h4 class="desktop-feature">Desktop Approach</h4>
+                    <ul>
+                        <li><code>@media (min-width: 768px)</code></li>
+                        <li>Grid layouts with multiple columns</li>
+                        <li>Traditional web app navigation</li>
+                        <li>Mouse hover interactions</li>
+                        <li>Full viewport utilization</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="mobile-feature">Mobile Approach</h4>
+                    <ul>
+                        <li><code>@media (max-width: 767px)</code></li>
+                        <li>Single column stacking</li>
+                        <li>App-style bottom navigation</li>
+                        <li>Touch-first interactions</li>
+                        <li>Contained 420px viewport</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openMainApp() {
+            window.open('index.html', '_blank');
+        }
+
+        function openMobileMode() {
+            window.open('index.html#mobile', '_blank');
+        }
+
+        function openDesktopMode() {
+            window.open('index.html#desktop', '_blank');
+        }
+
+        function openMobileTest() {
+            window.open('mobile-test.html', '_blank');
+        }
+    </script>
+</body>
+</html>

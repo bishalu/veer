@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golo Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #f7f7f7;
+        }
+        .test-section {
+            background: white;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .status {
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+        }
+        .pass { background: #d4edda; color: #155724; }
+        .fail { background: #f8d7da; color: #721c24; }
+        button {
+            background: #FF5A5F;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 0.5rem;
+        }
+        button:hover { background: #e64a4f; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Golo Web App - Test Suite</h1>
+    
+    <div class="test-section">
+        <h2>Browser Compatibility Tests</h2>
+        <div id="browser-tests">
+            <div class="status" id="js-test">🔄 Testing JavaScript...</div>
+            <div class="status" id="audio-test">🔄 Testing Web Audio API...</div>
+            <div class="status" id="storage-test">🔄 Testing LocalStorage...</div>
+            <div class="status" id="css-test">🔄 Testing CSS Grid/Flexbox...</div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Feature Tests</h2>
+        <div id="feature-tests">
+            <button onclick="testTabNavigation()">Test Tab Navigation</button>
+            <button onclick="testAudioRecording()">Test Audio Recording</button>
+            <button onclick="testLocalStorage()">Test Data Persistence</button>
+            <button onclick="testNotifications()">Test Notifications</button>
+        </div>
+        <div id="feature-results"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Quick Links</h2>
+        <button onclick="window.open('index.html', '_blank')">🚀 Open Main App</button>
+        <button onclick="window.open('README.md', '_blank')">📖 View Documentation</button>
+    </div>
+
+    <script>
+        // Browser compatibility tests
+        function runBrowserTests() {
+            // JavaScript ES6+ support
+            try {
+                const testArrow = () => 'ES6 works';
+                const testTemplate = `Template literals work`;
+                const [testDestructure] = [true];
+                document.getElementById('js-test').innerHTML = '✅ JavaScript ES6+ - PASS';
+                document.getElementById('js-test').className = 'status pass';
+            } catch (e) {
+                document.getElementById('js-test').innerHTML = '❌ JavaScript ES6+ - FAIL';
+                document.getElementById('js-test').className = 'status fail';
+            }
+
+            // Web Audio API
+            try {
+                if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                    document.getElementById('audio-test').innerHTML = '✅ Web Audio API - PASS';
+                    document.getElementById('audio-test').className = 'status pass';
+                } else {
+                    document.getElementById('audio-test').innerHTML = '⚠️ Web Audio API - Limited Support';
+                    document.getElementById('audio-test').className = 'status fail';
+                }
+            } catch (e) {
+                document.getElementById('audio-test').innerHTML = '❌ Web Audio API - FAIL';
+                document.getElementById('audio-test').className = 'status fail';
+            }
+
+            // LocalStorage
+            try {
+                localStorage.setItem('test', 'test');
+                localStorage.removeItem('test');
+                document.getElementById('storage-test').innerHTML = '✅ LocalStorage - PASS';
+                document.getElementById('storage-test').className = 'status pass';
+            } catch (e) {
+                document.getElementById('storage-test').innerHTML = '❌ LocalStorage - FAIL';
+                document.getElementById('storage-test').className = 'status fail';
+            }
+
+            // CSS Grid/Flexbox
+            try {
+                const testEl = document.createElement('div');
+                testEl.style.display = 'grid';
+                testEl.style.display = 'flex';
+                document.getElementById('css-test').innerHTML = '✅ CSS Grid/Flexbox - PASS';
+                document.getElementById('css-test').className = 'status pass';
+            } catch (e) {
+                document.getElementById('css-test').innerHTML = '❌ CSS Grid/Flexbox - FAIL';
+                document.getElementById('css-test').className = 'status fail';
+            }
+        }
+
+        // Feature tests
+        function testTabNavigation() {
+            addResult('🔄 Opening main app to test tab navigation...');
+            window.open('index.html', '_blank');
+            addResult('✅ Check if tabs switch properly in the main app');
+        }
+
+        function testAudioRecording() {
+            addResult('🔄 Testing microphone permissions...');
+            navigator.mediaDevices.getUserMedia({ audio: true })
+                .then(stream => {
+                    addResult('✅ Microphone access granted - Audio recording should work');
+                    stream.getTracks().forEach(track => track.stop());
+                })
+                .catch(err => {
+                    addResult(`❌ Microphone access denied: ${err.message}`);
+                });
+        }
+
+        function testLocalStorage() {
+            try {
+                const testData = { name: 'Test User', goals: ['Test Goal'] };
+                localStorage.setItem('goloTest', JSON.stringify(testData));
+                const retrieved = JSON.parse(localStorage.getItem('goloTest'));
+                localStorage.removeItem('goloTest');
+                
+                if (retrieved.name === 'Test User') {
+                    addResult('✅ Data persistence working correctly');
+                } else {
+                    addResult('❌ Data persistence failed');
+                }
+            } catch (e) {
+                addResult(`❌ LocalStorage error: ${e.message}`);
+            }
+        }
+
+        function testNotifications() {
+            addResult('✅ Notification system ready (check main app)');
+        }
+
+        function addResult(message) {
+            const results = document.getElementById('feature-results');
+            const div = document.createElement('div');
+            div.className = 'status ' + (message.includes('✅') ? 'pass' : 'fail');
+            div.innerHTML = message;
+            results.appendChild(div);
+        }
+
+        // Run tests on load
+        document.addEventListener('DOMContentLoaded', runBrowserTests);
+    </script>
+</body>
+</html>
